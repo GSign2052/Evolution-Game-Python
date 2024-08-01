@@ -30,7 +30,7 @@ OBSTACLE_SIZE = 20
 
 # Anzahl der Anfangsobjekte
 NUM_PLANTS = 500
-NUM_PREYS = 20
+NUM_PREYS = 100
 MIN_PREDATORS = 5
 NUM_OBSTACLES = 25
 
@@ -52,7 +52,7 @@ SIGHT_RANGE = 150
 MIN_PREYS = 1
 
 # Wachstumsrate
-PLANT_GROWTH_INTERVAL = 100
+PLANT_GROWTH_INTERVAL = 1
 
 # Bewegungsparameter
 PREY_SPEED = 3
@@ -221,8 +221,8 @@ class Predator(Creature):
         preys_in_range = self.detect_objects(preys)
         if preys_in_range:
             closest_prey = min(preys_in_range, key=lambda p: self.get_distance(p))
-            direction_x = self.rect.centerx - closest_prey.rect.centerx
-            direction_y = self.rect.centery - closest_prey.rect.centery
+            direction_x = closest_prey.rect.centerx - self.rect.centerx
+            direction_y = closest_prey.rect.centery - self.rect.centery
             distance = math.hypot(direction_x, direction_y)
             if distance > 0:
                 direction_x /= distance
@@ -371,19 +371,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # Update von allen Sprites
     all_sprites.update()
-
-    # Pflanzenwachstum
-    if len(plants) < MAX_PLANTS:
-        current_time = pygame.time.get_ticks()
-        if current_time - start_time > PLANT_GROWTH_INTERVAL:
-            start_time = current_time
-            x = random.randint(0, WINDOW_WIDTH - PLANT_SIZE)
-            y = random.randint(0, WINDOW_HEIGHT - PLANT_SIZE)
-            plant = Plant(x, y)
-            plants.add(plant)
-            all_sprites.add(plant)
 
     screen.fill(WHITE)
     all_sprites.draw(screen)
