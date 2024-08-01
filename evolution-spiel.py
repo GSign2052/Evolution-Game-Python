@@ -31,7 +31,7 @@ OBSTACLE_SIZE = 30
 # Anzahl der Anfangsobjekte
 NUM_PLANTS = 500
 NUM_PREYS = 10
-MIN_PREDATORS = 1
+MIN_PREDATORS = 3
 NUM_OBSTACLES = 25
 
 # Maximale Anzahl an Pflanzen
@@ -42,7 +42,7 @@ PREY_LIFETIME = 100000
 PREDATOR_LIFETIME = 15000
 
 # Fortpflanzungsbedingungen
-PLANTS_EATEN_TO_REPRODUCE = 5
+PLANTS_EATEN_TO_REPRODUCE = 4
 PREYS_EATEN_TO_REPRODUCE = 3
 
 # Sichtfeld
@@ -55,8 +55,8 @@ MIN_PREYS = 1
 PLANT_GROWTH_INTERVAL = 1  # Zeitintervall für das Wachstum in Millisekunden
 
 # Bewegungsparameter
-PREY_SPEED = 2
-PREDATOR_SPEED = 2.5
+PREY_SPEED = 1
+PREDATOR_SPEED = 2
 RANDOM_MOVEMENT_INTERVAL = 1000
 
 # ===============================
