@@ -12,7 +12,7 @@ WINDOW_WIDTH = 1200
 WINDOW_HEIGHT = 800
 
 # Spielparameter
-FPS = 30
+FPS = 60
 
 # Farben
 WHITE = (255, 255, 255)
@@ -23,15 +23,15 @@ GRAY = (128, 128, 128)
 BLACK = (0, 0, 0)
 
 # Größe der Sprites
-PLANT_SIZE = 8
+PLANT_SIZE = 20
 PREY_SIZE = 12
 PREDATOR_SIZE = 16
-OBSTACLE_SIZE = 20
+OBSTACLE_SIZE = 30
 
 # Anzahl der Anfangsobjekte
 NUM_PLANTS = 500
-NUM_PREYS = 100
-MIN_PREDATORS = 5
+NUM_PREYS = 10
+MIN_PREDATORS = 1
 NUM_OBSTACLES = 25
 
 # Maximale Anzahl an Pflanzen
@@ -39,11 +39,11 @@ MAX_PLANTS = 500
 
 # Lebenszeiten in Millisekunden
 PREY_LIFETIME = 100000
-PREDATOR_LIFETIME = 150000
+PREDATOR_LIFETIME = 15000
 
 # Fortpflanzungsbedingungen
-PLANTS_EATEN_TO_REPRODUCE = 8
-PREYS_EATEN_TO_REPRODUCE = 5
+PLANTS_EATEN_TO_REPRODUCE = 5
+PREYS_EATEN_TO_REPRODUCE = 3
 
 # Sichtfeld
 SIGHT_RANGE = 150
@@ -52,11 +52,11 @@ SIGHT_RANGE = 150
 MIN_PREYS = 1
 
 # Wachstumsrate
-PLANT_GROWTH_INTERVAL = 1
+PLANT_GROWTH_INTERVAL = 1  # Zeitintervall für das Wachstum in Millisekunden
 
 # Bewegungsparameter
-PREY_SPEED = 3
-PREDATOR_SPEED = 3.2
+PREY_SPEED = 2
+PREDATOR_SPEED = 2.5
 RANDOM_MOVEMENT_INTERVAL = 1000
 
 # ===============================
@@ -279,10 +279,9 @@ class Predator(Creature):
                     self.rect.y += direction_y * PREDATOR_SPEED
 
 class Plant(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x, y, plant_image):
         super().__init__()
-        self.image = pygame.Surface((PLANT_SIZE, PLANT_SIZE))
-        self.image.fill(GREEN)
+        self.image = pygame.image.load(plant_image).convert_alpha()
         self.rect = self.image.get_rect(topleft=(x, y))
 
 class Obstacle(pygame.sprite.Sprite):
@@ -307,13 +306,24 @@ preys = pygame.sprite.Group()
 predators = pygame.sprite.Group()
 obstacles = pygame.sprite.Group()
 
+# Pflanzenbilder
+plant_images = [
+    'images/plant1.png',
+    'images/plant2.png',
+    'images/plant3.png'
+]
+
 # Initialisierung der Pflanzen
-for _ in range(NUM_PLANTS):
+def create_plant():
     x = random.randint(0, WINDOW_WIDTH - PLANT_SIZE)
     y = random.randint(0, WINDOW_HEIGHT - PLANT_SIZE)
-    plant = Plant(x, y)
+    plant_image = random.choice(plant_images)
+    plant = Plant(x, y, plant_image)
     plants.add(plant)
     all_sprites.add(plant)
+
+for _ in range(NUM_PLANTS):
+    create_plant()
 
 # Initialisierung der Beute
 for _ in range(NUM_PREYS):
@@ -372,6 +382,11 @@ while running:
             running = False
 
     all_sprites.update()
+
+    # Erzeuge neue Pflanzen, falls nötig
+    if len(plants) < MAX_PLANTS:
+        if pygame.time.get_ticks() % PLANT_GROWTH_INTERVAL < FPS:
+            create_plant()
 
     screen.fill(WHITE)
     all_sprites.draw(screen)
