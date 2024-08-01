@@ -1,7 +1,9 @@
 # Evolution-Game-Python
 
 ### **English**
-Certainly! Here’s a detailed explanation of the provided Python code using the `pygame` library for creating a simple simulation game:
+<details>
+  <summary>open</summary>
+  Certainly! Here’s a detailed explanation of the provided Python code using the `pygame` library for creating a simple simulation game:
 
 ---
 
@@ -91,9 +93,12 @@ The code defines a simple simulation where:
 
 The game operates within a window where all these entities interact, using basic physics for movement and behavior, and provides a continuous simulation of their interactions based on the defined parameters and constants.
 
-### **DEUTSCH/GERMAN**
+  </details>
 
-Dieser Python-Code verwendet die Bibliothek `pygame`, um ein einfaches Simulationsspiel zu erstellen. Es stellt eine virtuelle Welt dar, in der Pflanzen, Beute und Jäger interagieren. Hier ist eine ausführliche Erklärung des Codes:
+### **German**
+<details>
+  <summary>open</summary>
+  Dieser Python-Code verwendet die Bibliothek `pygame`, um ein einfaches Simulationsspiel zu erstellen. Es stellt eine virtuelle Welt dar, in der Pflanzen, Beute und Jäger interagieren. Hier ist eine ausführliche Erklärung des Codes:
 
 ### 1. **Konstanten und Einstellungen**
 
@@ -167,3 +172,11 @@ Dieser Python-Code verwendet die Bibliothek `pygame`, um ein einfaches Simulatio
 - **Fortpflanzung**: Beute und Jäger reproduzieren sich basierend auf den Regeln für gegessene Pflanzen oder Beute.
 
 Dieses Spiel simuliert ein einfaches Ökosystem, in dem Pflanzen wachsen, Beute sich ernährt und Jäger jagen. Es bietet eine gute Grundlage, um mit pygame komplexere Spiele und Simulationen zu erstellen.
+
+  </details>
+
+### **Updates**
+<details>
+  <summary>open</summary>
+
+  </details>
