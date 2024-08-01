@@ -1,5 +1,7 @@
 # Evolution-Game-Python
 
+This code creates a simple simulation game where entities such as plants, prey, and predators interact in a graphical environment. The game involves basic elements of life simulation: creatures (prey and predators) and plants, all within a bounded screen area.
+
 ### **English**
 <details>
   <summary>open</summary>
