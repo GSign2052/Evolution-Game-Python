@@ -940,4 +940,12 @@ Der Code stellt eine einfache Simulation eines Ökosystems dar, bei dem Pflanzen
    - Die Startzeit des Spiels wird erfasst und verwendet, um die verstrichene Zeit zu berechnen.
 Mit diesen Änderungen wird die Übersicht jetzt in der oberen linken Ecke des Bildschirms angezeigt und aktualisiert.
 ---------------------------------------------------------------------------------
+### **Attribute für Ausdauer:**
+1. ***Attribute für Ausdauer***:
+In der `Creature`-Klasse wurden Attribute für die Ausdauer (`sprint_start_time`, `cooldown_end_time`, `is_sprinting`) und die Dauer des Sprints und des Cooldowns hinzugefügt.
+2. ***Sprint-Logik***:
+Die Methode `handle_sprint` steuert den Sprint und den Cooldown. Wenn der Sprint abgelaufen ist, wird der Cooldown aktiviert.
+3. ***Sprint-Start***:
+In den `move`-Methoden von `Prey` und `Predator` wird die Methode `start_sprint` aufgerufen, um den Sprint zu beginnen, wenn die Bedingungen erfüllt sind (nahe Beute für `Predator` oder nahe Jäger für `Prey`).
+- Mit diesen Änderungen kannst du nun eine Ausdauer-Funktionalität in deinem Spiel verwenden, die es den Kreaturen ermöglicht, kurze Sprints einzulegen, bevor sie sich für eine bestimmte Zeit erholen müssen.
   </details>
