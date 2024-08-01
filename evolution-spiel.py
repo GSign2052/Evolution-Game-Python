@@ -38,7 +38,7 @@ NUM_OBSTACLES = 25
 MAX_PLANTS = 500
 
 # Lebenszeiten in Millisekunden
-PREY_LIFETIME = 10000
+PREY_LIFETIME = 100000
 PREDATOR_LIFETIME = 150000
 
 # Fortpflanzungsbedingungen
