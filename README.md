@@ -182,19 +182,24 @@ Dieses Spiel simuliert ein einfaches Ökosystem, in dem Pflanzen wachsen, Beute 
   <summary>open</summary>
   
 **01.08.2024/ Version 0.51:**
-  
+-------------------------------------------------------------------------------
+### **Logging-Setup** 
 1. ***Logging-Setup*** 
    - Das Logging-Modul wird mit `logging.basicConfig` eingerichtet, um eine einfache Konfiguration zu ermöglichen.
-
 2. ***Logging in `Creature`:***
    - In der Methode `update()` wird ein Logeintrag erstellt, wenn die Lebenszeit eines `Creature`-Objekts überschritten wird.
-
 3. ***Logging in `Prey`:***
    - Im `reproduce`-Methodenaufruf wird ein Logeintrag gemacht, wenn ein neuer `Prey` erzeugt wird.
-
 4. ***Logging in `Predator`:***
    - Ähnlich wie bei `Prey` wird beim Reproduzieren eines neuen `Predator` ein Logeintrag gemacht.
-
-Mit diesen Ergänzungen kannst du die Aktivitäten deiner Spielobjekte besser nachverfolgen und Probleme leichter diagnostizieren.
-
+---------------------------------------------------------------------------------
+### **Übersicht auf dem Bildschirm:**
+1. ***Funktion `draw_stats(screen, start_time)`:***
+   - Diese Funktion berechnet die verstrichene Zeit seit dem Start des Spiels und zeigt die Anzahl der Pflanzen, Beute und Jäger an.
+2. ***Übersicht auf dem Bildschirm:***
+   - Die Übersicht wird mit der `draw_stats`-Funktion oben links auf dem Bildschirm gezeichnet.
+3. ***Zeiterfassung:***
+   - Die Startzeit des Spiels wird erfasst und verwendet, um die verstrichene Zeit zu berechnen.
+Mit diesen Änderungen wird die Übersicht jetzt in der oberen linken Ecke des Bildschirms angezeigt und aktualisiert.
+---------------------------------------------------------------------------------
   </details>
