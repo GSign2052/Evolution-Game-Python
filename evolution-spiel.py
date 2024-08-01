@@ -12,7 +12,7 @@ WINDOW_WIDTH = 1200
 WINDOW_HEIGHT = 800
 
 # Spielparameter
-FPS = 60
+FPS = 30
 
 # Farben
 WHITE = (255, 255, 255)
@@ -57,7 +57,12 @@ PLANT_GROWTH_INTERVAL = 1  # Zeitintervall für das Wachstum in Millisekunden
 # Bewegungsparameter
 PREY_SPEED = 1
 PREDATOR_SPEED = 2
-RANDOM_MOVEMENT_INTERVAL = 100
+RANDOM_MOVEMENT_INTERVAL = 1000
+
+# Ausdauerparameter
+SPRINT_SPEED_MULTIPLIER = 3
+SPRINT_DURATION = 2000  # Dauer des Sprints in Millisekunden
+COOLDOWN_DURATION = 5000  # Cooldown-Zeit in Millisekunden
 
 # ===============================
 # LOGGING EINRICHTEN
@@ -77,19 +82,45 @@ class Creature(pygame.sprite.Sprite):
         self.size = size
         self.sight_range = sight_range
         self.life_time = life_time
+        self.base_speed = speed
         self.speed = speed
         self.timer = pygame.time.get_ticks()
         self.last_food_time = pygame.time.get_ticks()
         self.last_random_movement_time = pygame.time.get_ticks()
         self.direction = pygame.Vector2(random.choice([-1, 1]), random.choice([-1, 1])).normalize()
 
+        # Ausdauerparameter
+        self.sprint_start_time = None
+        self.cooldown_end_time = 0
+        self.is_sprinting = False
+
     def update(self):
         if pygame.time.get_ticks() - self.timer > self.life_time:
             logging.info(f"{self.__class__.__name__} hat seine Lebenszeit überschritten und wird entfernt.")
             self.kill()
-        
+
+        self.handle_sprint()
+
         self.wrap_around_screen()
         self.random_movement()
+
+    def handle_sprint(self):
+        current_time = pygame.time.get_ticks()
+        if self.is_sprinting:
+            if current_time - self.sprint_start_time > SPRINT_DURATION:
+                self.is_sprinting = False
+                self.cooldown_end_time = current_time + COOLDOWN_DURATION
+            self.speed = self.base_speed * SPRINT_SPEED_MULTIPLIER
+        else:
+            if current_time < self.cooldown_end_time:
+                self.speed = self.base_speed
+            else:
+                self.speed = self.base_speed
+
+    def start_sprint(self):
+        if not self.is_sprinting and pygame.time.get_ticks() > self.cooldown_end_time:
+            self.is_sprinting = True
+            self.sprint_start_time = pygame.time.get_ticks()
 
     def detect_objects(self, objects):
         detected = []
@@ -134,6 +165,7 @@ class Prey(Creature):
     def move(self):
         predators_in_range = self.detect_objects(predators)
         if predators_in_range:
+            self.start_sprint()  # Beginne Sprinten, wenn ein Jäger in der Nähe ist
             closest_predator = min(predators_in_range, key=lambda p: self.get_distance(p))
             direction_x = self.rect.centerx - closest_predator.rect.centerx
             direction_y = self.rect.centery - closest_predator.rect.centery
@@ -142,9 +174,10 @@ class Prey(Creature):
                 direction_x /= distance
                 direction_y /= distance
                 self.direction = pygame.Vector2(direction_x, direction_y)
-                self.rect.x += self.direction.x * PREY_SPEED
-                self.rect.y += self.direction.y * PREY_SPEED
+                self.rect.x += self.direction.x * self.speed
+                self.rect.y += self.direction.y * self.speed
         else:
+            self.speed = PREY_SPEED  # Zurück zur normalen Geschwindigkeit, wenn kein Jäger in der Nähe ist
             plants_in_range = self.detect_objects(plants)
             if plants_in_range:
                 closest_plant = min(plants_in_range, key=lambda p: self.get_distance(p))
@@ -155,8 +188,8 @@ class Prey(Creature):
                     direction_x /= distance
                     direction_y /= distance
                     self.direction = pygame.Vector2(direction_x, direction_y)
-                    self.rect.x += self.direction.x * PREY_SPEED
-                    self.rect.y += self.direction.y * PREY_SPEED
+                    self.rect.x += self.direction.x * self.speed
+                    self.rect.y += self.direction.y * self.speed
 
         self.avoid_overlap(preys)
 
@@ -220,6 +253,7 @@ class Predator(Creature):
     def move(self):
         preys_in_range = self.detect_objects(preys)
         if preys_in_range:
+            self.start_sprint()  # Beginne Sprinten, wenn Beute in der Nähe ist
             closest_prey = min(preys_in_range, key=lambda p: self.get_distance(p))
             direction_x = closest_prey.rect.centerx - self.rect.centerx
             direction_y = closest_prey.rect.centery - self.rect.centery
@@ -228,8 +262,10 @@ class Predator(Creature):
                 direction_x /= distance
                 direction_y /= distance
                 self.direction = pygame.Vector2(direction_x, direction_y)
-                self.rect.x += self.direction.x * PREDATOR_SPEED
-                self.rect.y += self.direction.y * PREDATOR_SPEED
+                self.rect.x += self.direction.x * self.speed
+                self.rect.y += self.direction.y * self.speed
+        else:
+            self.speed = PREDATOR_SPEED  # Zurück zur normalen Geschwindigkeit, wenn keine Beute in der Nähe ist
         self.avoid_overlap(predators)
 
     def search_for_food(self):
