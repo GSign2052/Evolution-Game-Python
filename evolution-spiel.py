@@ -23,27 +23,27 @@ GRAY = (128, 128, 128)
 BLACK = (0, 0, 0)
 
 # Größe der Sprites
-PLANT_SIZE = 20
-PREY_SIZE = 12
-PREDATOR_SIZE = 16
-OBSTACLE_SIZE = 30
+PLANT_SIZE = 15
+PREY_SIZE = 8
+PREDATOR_SIZE = 14
+OBSTACLE_SIZE = 16
 
 # Anzahl der Anfangsobjekte
-NUM_PLANTS = 500
-NUM_PREYS = 20
-MIN_PREDATORS = 3
+NUM_PLANTS = 0
+NUM_PREYS = 50
+MIN_PREDATORS = 10
 NUM_OBSTACLES = 50
 
 # Maximale Anzahl an Pflanzen
-MAX_PLANTS = 500
+MAX_PLANTS = 1000
 
 # Lebenszeiten in Millisekunden
 PREY_LIFETIME = 100000
-PREDATOR_LIFETIME = 10000
+PREDATOR_LIFETIME = 20000
 
 # Fortpflanzungsbedingungen
-PLANTS_EATEN_TO_REPRODUCE = 2
-PREYS_EATEN_TO_REPRODUCE = 8
+PLANTS_EATEN_TO_REPRODUCE = 5
+PREYS_EATEN_TO_REPRODUCE = 10
 
 # Sichtfeld
 SIGHT_RANGE = 150
@@ -52,17 +52,20 @@ SIGHT_RANGE = 150
 MIN_PREYS = 1
 
 # Wachstumsrate
-PLANT_GROWTH_INTERVAL = 1  # Zeitintervall für das Wachstum in Millisekunden
+PLANT_GROWTH_INTERVAL = 0.1  # Zeitintervall für das Wachstum in Millisekunden
 
 # Bewegungsparameter
-PREY_SPEED = 1
-PREDATOR_SPEED = 1.5
+PREY_SPEED = 1.2
+PREDATOR_SPEED = 1.3
 RANDOM_MOVEMENT_INTERVAL = 1000
 
 # Ausdauerparameter
 SPRINT_SPEED_MULTIPLIER = 3
-SPRINT_DURATION = 1000  # Dauer des Sprints in Millisekunden
+SPRINT_DURATION = 2000  # Dauer des Sprints in Millisekunden
 COOLDOWN_DURATION = 6000  # Cooldown-Zeit in Millisekunden
+# ===============================
+# RESTART BUTTON
+# ===============================
 
 # ===============================
 # LOGGING EINRICHTEN
