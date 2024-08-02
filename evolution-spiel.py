@@ -45,21 +45,21 @@ PREDATOR_LIFETIME = 200000
 
 # Fortpflanzungsbedingungen
 
-PLANTS_EATEN_TO_REPRODUCE = 10
+PLANTS_EATEN_TO_REPRODUCE = 8
 PREYS_EATEN_TO_REPRODUCE = 5
 
 # Sichtfeld
-SIGHT_RANGE = 150
+SIGHT_RANGE = 200
 
 # Minimale Anzahl an Beute
 MIN_PREYS = 1
 
 # Wachstumsrate
-PLANT_GROWTH_INTERVAL = 0.01  # Zeitintervall für das Wachstum in Millisekunden
+PLANT_GROWTH_INTERVAL = 0.001  # Zeitintervall für das Wachstum in Millisekunden
 
 # Bewegungsparameter
 PREY_SPEED = 1.2
-PREDATOR_SPEED = 1.8
+PREDATOR_SPEED = 1.4
 RANDOM_MOVEMENT_INTERVAL = 2000
 
 # Ausdauerparameter
