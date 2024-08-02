@@ -30,9 +30,9 @@ OBSTACLE_SIZE = 30
 
 # Anzahl der Anfangsobjekte
 NUM_PLANTS = 500
-NUM_PREYS = 10
+NUM_PREYS = 20
 MIN_PREDATORS = 3
-NUM_OBSTACLES = 25
+NUM_OBSTACLES = 50
 
 # Maximale Anzahl an Pflanzen
 MAX_PLANTS = 500
@@ -42,8 +42,8 @@ PREY_LIFETIME = 100000
 PREDATOR_LIFETIME = 10000
 
 # Fortpflanzungsbedingungen
-PLANTS_EATEN_TO_REPRODUCE = 5
-PREYS_EATEN_TO_REPRODUCE = 3
+PLANTS_EATEN_TO_REPRODUCE = 2
+PREYS_EATEN_TO_REPRODUCE = 8
 
 # Sichtfeld
 SIGHT_RANGE = 150
@@ -56,13 +56,13 @@ PLANT_GROWTH_INTERVAL = 1  # Zeitintervall für das Wachstum in Millisekunden
 
 # Bewegungsparameter
 PREY_SPEED = 1
-PREDATOR_SPEED = 2
+PREDATOR_SPEED = 1.5
 RANDOM_MOVEMENT_INTERVAL = 1000
 
 # Ausdauerparameter
 SPRINT_SPEED_MULTIPLIER = 3
-SPRINT_DURATION = 2000  # Dauer des Sprints in Millisekunden
-COOLDOWN_DURATION = 5000  # Cooldown-Zeit in Millisekunden
+SPRINT_DURATION = 1000  # Dauer des Sprints in Millisekunden
+COOLDOWN_DURATION = 6000  # Cooldown-Zeit in Millisekunden
 
 # ===============================
 # LOGGING EINRICHTEN
