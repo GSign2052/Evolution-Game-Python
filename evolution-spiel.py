@@ -8,8 +8,8 @@ import logging
 # ===============================
 
 # Fenstergröße
-WINDOW_WIDTH = 1200
-WINDOW_HEIGHT = 800
+WINDOW_WIDTH = 1600
+WINDOW_HEIGHT = 1000
 
 # Spielparameter
 FPS = 30
@@ -17,6 +17,7 @@ FPS = 30
 # Farben
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
+ORANGE = ( 214, 151, 69)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 GRAY = (128, 128, 128)
@@ -25,24 +26,25 @@ TRANSPARENT_GRAY = (128, 128, 128, 150)
 
 # Größe der Sprites
 PLANT_SIZE = 20
-PREY_SIZE = 30
-PREDATOR_SIZE = 38
+PREY_SIZE = 38
+PREDATOR_SIZE = 80
 OBSTACLE_SIZE = 50
 
 # Anzahl der Anfangsobjekte
-NUM_PLANTS = 1000
-NUM_PREYS = 50
-MIN_PREDATORS = 10
+NUM_PLANTS = 500
+NUM_PREYS = 20
+MIN_PREDATORS = 5
 NUM_OBSTACLES = 30
 
 # Maximale Anzahl an Pflanzen
-MAX_PLANTS = 1000
+MAX_PLANTS = 500
 
 # Lebenszeiten in Millisekunden
 PREY_LIFETIME = 100000
-PREDATOR_LIFETIME = 20000
+PREDATOR_LIFETIME = 200000
 
 # Fortpflanzungsbedingungen
+
 PLANTS_EATEN_TO_REPRODUCE = 10
 PREYS_EATEN_TO_REPRODUCE = 5
 
@@ -53,12 +55,12 @@ SIGHT_RANGE = 150
 MIN_PREYS = 1
 
 # Wachstumsrate
-PLANT_GROWTH_INTERVAL = 1  # Zeitintervall für das Wachstum in Millisekunden
+PLANT_GROWTH_INTERVAL = 0.01  # Zeitintervall für das Wachstum in Millisekunden
 
 # Bewegungsparameter
 PREY_SPEED = 1.2
-PREDATOR_SPEED = 1.3
-RANDOM_MOVEMENT_INTERVAL = 1000
+PREDATOR_SPEED = 1.8
+RANDOM_MOVEMENT_INTERVAL = 2000
 
 # Ausdauerparameter
 SPRINT_SPEED_MULTIPLIER = 3
@@ -69,7 +71,7 @@ COOLDOWN_DURATION = 6000  # Cooldown-Zeit in Millisekunden
 # ===============================
 BUTTON_WIDTH = 80
 BUTTON_HEIGHT = 30
-BUTTON_COLOR = GRAY
+BUTTON_COLOR = WHITE
 BUTTON_HOVER_COLOR = (200, 200, 200)
 BUTTON_TEXT_COLOR = BLACK
 BUTTON_FONT = 'Arial'
@@ -496,7 +498,7 @@ while running:
         if pygame.time.get_ticks() % PLANT_GROWTH_INTERVAL < FPS:
             create_plant()
 
-    screen.fill(WHITE)
+    screen.fill(ORANGE)
     all_sprites.draw(screen)
     draw_stats(screen, start_time)
     draw_button(screen, "Restart", WINDOW_WIDTH - BUTTON_WIDTH - 10, 10, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_COLOR, BUTTON_HOVER_COLOR, BUTTON_TEXT_COLOR, BUTTON_FONT, restart_game)
