@@ -948,4 +948,11 @@ Die Methode `handle_sprint` steuert den Sprint und den Cooldown. Wenn der Sprint
 3. ***Sprint-Start***:
 In den `move`-Methoden von `Prey` und `Predator` wird die Methode `start_sprint` aufgerufen, um den Sprint zu beginnen, wenn die Bedingungen erfüllt sind (nahe Beute für `Predator` oder nahe Jäger für `Prey`).
 - Mit diesen Änderungen kannst du nun eine Ausdauer-Funktionalität in deinem Spiel verwenden, die es den Kreaturen ermöglicht, kurze Sprints einzulegen, bevor sie sich für eine bestimmte Zeit erholen müssen.
+
+**03.08.2024/ Version 0.52:**
+-------------------------------------------------------------------------------
+1. ***Hintergrund geändert***:
+2. ***Neue Tiere und Pflanzen***:
+3. ***Verbesserte Bewegungslogik***:
+4. ***Restart Button***:
   </details>
